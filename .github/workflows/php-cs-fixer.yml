@@ -13,7 +13,7 @@ jobs:
         working-directory: src
     steps:
       - uses: actions/checkout@v2
-      - name: Prepare
+      - name: install php-cs-fixer
         run: |
           wget https://cs.symfony.com/download/php-cs-fixer-v3.phar -O php-cs-fixer
           chmod a+x php-cs-fixer
