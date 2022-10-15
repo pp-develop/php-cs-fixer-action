@@ -1,0 +1,26 @@
+name: php-cs-fixer
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: src
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare
+        run: |
+          wget https://cs.symfony.com/download/php-cs-fixer-v3.phar -O php-cs-fixer
+          chmod a+x php-cs-fixer
+      - name: fix the files
+        run: |
+          php php-cs-fixer fix .
+      - name: commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: php-cs-fixer by github actions
